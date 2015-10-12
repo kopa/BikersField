@@ -1,7 +1,7 @@
 using Toybox.Application as App;
 
 //! @author Konrad Paumann
-class RunnersField extends App.AppBase {
+class BikersField extends App.AppBase {
 
     function onStart() {
     }
@@ -10,7 +10,7 @@ class RunnersField extends App.AppBase {
     }
 
     function getInitialView() {
-        return [ new RunnersView() ];
+        return [ new BikersView() ];
     }
 
 }

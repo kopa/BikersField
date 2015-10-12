@@ -1,5 +1,5 @@
 <resources>
-    <string id="AppName">RunnersField</string>
+    <string id="AppName">BikersField</string>
 
     <bitmap id="LauncherIcon" filename="images/launcher_icon.png" />
 </resources>

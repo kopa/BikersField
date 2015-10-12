@@ -7,7 +7,7 @@ using Toybox.System as System;
 //! A DataField that shows some infos.
 //!
 //! @author Konrad Paumann
-class RunnersView extends Ui.DataField {
+class BikersView extends Ui.DataField {
 
     hidden const CENTER = Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER;
     hidden const AVERAGE_SAMPLE_SIZE = 10;
@@ -17,8 +17,8 @@ class RunnersView extends Ui.DataField {
     hidden const ZERO_DISTANCE = "0.00";
     
     hidden var paceData = new DataQueue(AVERAGE_SAMPLE_SIZE);
-    hidden var tenSecondsPace = ZERO_TIME;
-    hidden var averageInfoPace = ZERO_TIME;
+    hidden var tenSecondsSpeed = ZERO_TIME;
+    hidden var averageSpeed = ZERO_TIME;
     hidden var hr = 0;
     hidden var distance = ZERO_DISTANCE;
     hidden var elapsedTime = ZERO_TIME;
@@ -102,8 +102,8 @@ class RunnersView extends Ui.DataField {
         dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_WHITE);
         //FIXME: get text from resource file if memory limit gets higher - with 1.1.4 and 1.2.0  -> out of memory errror 
         //dc.drawText(x, 8, HEADER_FONT, "TIME", CENTER);
-        dc.drawText(dc.getWidth() / 4.7, y - 10, HEADER_FONT, "PACE", CENTER);
-        dc.drawText(dc.getWidth() * 0.28, y2 - 10, HEADER_FONT, "AVG PACE", CENTER);
+        dc.drawText(dc.getWidth() / 4.7, y - 10, HEADER_FONT, "SPEED", CENTER);
+        dc.drawText(dc.getWidth() * 0.28, y2 - 10, HEADER_FONT, "AVG SPEED", CENTER);
         dc.drawText(x, y - 10, HEADER_FONT, "HR", CENTER); 
         dc.drawText(dc.getWidth() * 0.80, y - 10, HEADER_FONT, "DISTANCE", CENTER);
         dc.drawText(dc.getWidth() * 0.74, y2 - 10, HEADER_FONT, "DURATION", CENTER);
@@ -112,11 +112,11 @@ class RunnersView extends Ui.DataField {
     
     function drawValues(dc) {
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
-        dc.drawText(dc.getWidth() / 4.7, y1 + 21, VALUE_FONT, tenSecondsPace, CENTER);
+        dc.drawText(dc.getWidth() / 4.7, y1 + 21, VALUE_FONT, tenSecondsSpeed, CENTER);
         
         drawHeartRate(dc);
         
-        dc.drawText(dc.getWidth() * 0.26, y + 21, VALUE_FONT, averageInfoPace, CENTER);
+        dc.drawText(dc.getWidth() * 0.26, y + 21, VALUE_FONT, averageSpeed, CENTER);
         dc.drawText(dc.getWidth() * 0.79, y1 + 21, VALUE_FONT, distance, CENTER);
         dc.drawText(dc.getWidth() * 0.74, y + 21, VALUE_FONT, elapsedTime, CENTER);
         
@@ -174,11 +174,11 @@ class RunnersView extends Ui.DataField {
         var currentSpeed = info.currentSpeed;
         if (currentSpeed != null) {
             paceData.add(info.currentSpeed);
-            tenSecondsPace = getMinutesPerKmOrMile(computeAverageSpeed());
-            averageInfoPace = getMinutesPerKmOrMile(info.averageSpeed);
+            tenSecondsSpeed = getSpeed(computeAverageSpeed());
+            averageSpeed = getSpeed(info.averageSpeed);
         } else {
             paceData.reset();
-            tenSecondsPace = ZERO_TIME;
+            tenSecondsSpeed = ZERO_TIME;
         }
     }
     
@@ -224,13 +224,10 @@ class RunnersView extends Ui.DataField {
         gpsSignal = info.currentLocationAccuracy;
     }
 
-    function getMinutesPerKmOrMile(speedMetersPerSecond) {
+    function getSpeed(speedMetersPerSecond) {
         if (speedMetersPerSecond != null && speedMetersPerSecond > 0.2) {
-            var metersPerMinute = speedMetersPerSecond * 60.0;
-            var minutesPerKmOrMilesDecimal = kmOrMileInMeters / metersPerMinute;
-            var minutesPerKmOrMilesFloor = minutesPerKmOrMilesDecimal.toNumber();
-            var seconds = (minutesPerKmOrMilesDecimal - minutesPerKmOrMilesFloor) * 60;
-            return minutesPerKmOrMilesDecimal.format("%2d") + ":" + seconds.format("%02d");
+            var kmOrMilesPerHour = speedMetersPerSecond * 60.0 * 60.0 / kmOrMileInMeters;
+            return kmOrMilesPerHour.format("%.2f");
         }
         return ZERO_TIME;
     }
