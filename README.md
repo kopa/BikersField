@@ -1,5 +1,5 @@
 # BikersField
-This is a Data Field for the Fenix 3 that shows multiple values on a single field. 
+This is free a Data Field for the Fenix 3 that shows multiple values on a single field. 
 BikersField is open source and its code resides at github: https://github.com/kopa/BikersField
 
 Release versions are published in the [Garmin App Store](https://apps.garmin.com)
