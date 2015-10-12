@@ -1,10 +1,18 @@
-# RunnersField
+# BikersField
 
-This is a Data Field for the Fenix 3 that shows multiple values on a single field. RunnersField is open source and its code resides at github: https://github.com/kopa/RunnersField
+This is a Data Field for the Fenix 3 that shows multiple values on a single field. BikersField is open source and its code resides at github: https://github.com/kopa/BikersField
 
-Release versions are published in the [Garmin App Store](https://apps.garmin.com/en-US/apps/8428701b-e621-4156-9d4e-37d92b30151f)
+Release versions are published in the [Garmin App Store](https://apps.garmin.com)
 
 Feedback: https://forums.garmin.com/showthread.php?327411-DataFields-RunnersField
+
+## Changelog 1.0.2:
+* Based on RunnersField 1.0.2 and changed pace for speed
+* Fix when black background is configured in device settings.
+* Add battery percentage if < 10% left and make visualization red.
+* Fix irrelevant slow pace values
+* Change string TIMER to DURATION
+* Change string metric to km and statute to miles
 
 ## Changelog 1.0.1:
 
