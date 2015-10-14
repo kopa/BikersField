@@ -37,6 +37,9 @@ A Data Field needs to be set up within the settings for a given activity (like R
 Start Run activity.
 Hopefully you see the RunnersField datafield.
 
+## Changelog 1.0.3
+* Fix app id so that it doesn't interfere with RunnersField
+
 ## Changelog 1.0.2
 * Based on RunnersField 1.0.2 and changed pace for speed
 * Fix when black background is configured in device settings.
