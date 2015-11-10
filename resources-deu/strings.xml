@@ -1,0 +1,7 @@
+<resources>
+    <string id="pace">KM/H</string>
+    <string id="avgpace">DS KM/H</string>
+    <string id="hr">PULS</string>
+    <string id="distance">DIST</string>
+    <string id="duration">DAUER</string>
+</resources>
