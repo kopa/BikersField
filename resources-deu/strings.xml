@@ -1,4 +1,5 @@
 <resources>
+    <string id="AppName">BikersField</string>
     <string id="pace">KM/H</string>
     <string id="avgpace">DS KM/H</string>
     <string id="hr">PULS</string>
